@@ -1,22 +1,32 @@
-
-
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+#main-wrapper {
+  height: 90vh;
+  display: block;
+}
 
+#sidebar {
+  float: left;
+  height: 100%;
+  width: 30%;
+  border-right: 1px solid #000;
+  text-align: center;
+}
 
+#planning-wrapper {
+  display: inline-block;
+  border: 1px 1px 1px 1px solid #000;
+  width: 70%;
+  height: 100%;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.loading {
+  float: right;
+  width: 16px !important;
+  height: 16px !important;
+  background-repeat: none;
+  margin: 2px;
+  vertical-align: middle;
+  background-image: url(../img/ajax-loader.gif);
+}
