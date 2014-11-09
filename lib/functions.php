@@ -38,12 +38,6 @@ function get_all_departments($semester) {
 	return $departments;
 }
 
-function get_all_semesters() {
-	$json_object = get_json(API_TERMS);
-	return json_decode($json_object, true)['term'];
-}
-
-
 function isDuplicate($department, $departments) {
 	foreach ($departments as $d) {
 		if (strcmp($department->getCode(), $d->getCode()) == 0) {
@@ -87,11 +81,6 @@ function get_section($section, $course, $semester) {
 		}
 	}
 	return null;
-}
-
-function get_all_terms() {
-	$json_object = get_json(API_TERMS);
-	return json_decode($json_object, true)['terms'];
 }
 
 function semester_to_string($semester) {
