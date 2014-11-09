@@ -15,11 +15,16 @@
     text-align: center;
   }
 
+  #course-tile-preview .course-tile {
+    margin: 0 auto;
+  }
+
   .course-tile {
     position: relative;
+    display: inline-table;
+    margin: 10px 10px 10px 10px;
     width: 200px;
     height: 100px;
-    margin: 0 auto;
     border-radius: 5px;
     border: solid 1px #999999;
     background: linear-gradient(top, white, #EEEEEE);
@@ -42,7 +47,11 @@
     text-align:center;
     width: 100%;
     font-size: 14px;
-    overflow: auto;
+  }
+
+  .course-tile-area {
+    text-align: center;
+    width: 100%;
   }
 
   .close {
@@ -68,13 +77,34 @@
   }
 
   #planning-menu-bar {
-    height: 30px;
+    height: 40px;
     border-bottom: 1px solid #000;
+    text-align: center;
+    padding: 5px 10px 0 10px;
   }
+
+  #plan-title {
+    border: 5px solid #09F;
+    border-radius: 5px;
+    padding: 3px;
+    margin-top: 3px;
+    font-size: 20px;
+    min-width: 30px;
+    display: inline;
+  }
+
+  .saved {
+    color: green;
+  }
+
+  .not-saved {
+    color: red;
+  }
+
 
   #planning-area {
     margin: 1% auto 0 1%;
-    height: 95%;
+    height: 90%;
     overflow: auto;
   }
 
@@ -83,6 +113,7 @@
     position: relative;
     margin: 5px 5px 5px 5px;
     border-radius: 5px;
+    overflow: auto;
   }
 
   .semester-plan.selected {
@@ -94,31 +125,32 @@
   }
 
   .semester-title {
+    margin-top: 10px;
     font-size: 16px;
     text-align: center;
   }
 
   .semester-1 {
-    background: #ffece9; /* Old browsers */
-    background: -moz-linear-gradient(top,  #ffece9 0%, #ff4427 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffece9), color-stop(100%,#ff4427)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #ffece9 0%,#ff4427 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #ffece9 0%,#ff4427 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #ffece9 0%,#ff4427 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  #ffece9 0%,#ff4427 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffece9', endColorstr='#ff4427',GradientType=0 ); /* IE6-9 */
+    background: #fff6f3; /* Old browsers */
+    background: -moz-linear-gradient(top,  #fff6f3 0%, #ffad91 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff6f3), color-stop(100%,#ffad91)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #fff6f3 0%,#ffad91 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #fff6f3 0%,#ffad91 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #fff6f3 0%,#ffad91 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #fff6f3 0%,#ffad91 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff6f3', endColorstr='#ffad91',GradientType=0 ); /* IE6-9 */
   }
 
   .semester-3 {
-    background: #fef6a8; /* Old browsers */
-    background: -moz-linear-gradient(top,  #fef6a8 0%, #f9eb7f 40%, #fde937 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fef6a8), color-stop(40%,#f9eb7f), color-stop(100%,#fde937)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #fef6a8 0%,#f9eb7f 40%,#fde937 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #fef6a8 0%,#f9eb7f 40%,#fde937 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #fef6a8 0%,#f9eb7f 40%,#fde937 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  #fef6a8 0%,#f9eb7f 40%,#fde937 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fef6a8', endColorstr='#fde937',GradientType=0 ); /* IE6-9 */
-  }
+    background: #fffdf3; /* Old browsers */
+    background: -moz-linear-gradient(top,  #fffdf3 0%, #ffeb91 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fffdf3), color-stop(100%,#ffeb91)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #fffdf3 0%,#ffeb91 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #fffdf3 0%,#ffeb91 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #fffdf3 0%,#ffeb91 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #fffdf3 0%,#ffeb91 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffdf3', endColorstr='#ffeb91',GradientType=0 ); /* IE6-9 */
+}
 
   .loading {
     float: right;

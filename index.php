@@ -19,6 +19,7 @@
   </style>
   <link rel="stylesheet" href="css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="chosen/chosen.min.css">
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/main.css">
 
   <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
@@ -28,7 +29,7 @@
   <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
+    <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="sr-only">Toggle navigation</span>
@@ -38,6 +39,17 @@
         </button>
         <a class="navbar-brand" href="#">SCheduler</a>
       </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Saved Plans <span class="caret"></span>
+            </a>
+            <ul id="saved-list" class="dropdown-menu" role="menu">
+              <li><a href="#">None Currently!</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
     </div>
   </div>
 
@@ -51,13 +63,17 @@
       <div id="add-course-btn" class="btn btn-default">Add Course</div>
     </div>
     <div id="planning-wrapper">
-      <div id="planning-menu-bar"></div>
+      <div id="planning-menu-bar">
+        <div id="plan-title" contenteditable="true">Your Title Here</div>
+        <i id="new-plan" class="fa fa-plus fa-2x pull-left"></i>
+        <i id="save-plan" class="fa fa-save fa-2x pull-right saved"></i>
+      </div>
       <div id="planning-area"></div>
     </div>
   </div>
   <hr>
   <footer>
-    <p>&copy; Company 2014</p>
+    <p>&copy; Michelle &amp; Ananth 2014</p>
   </footer>
 
 
