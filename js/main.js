@@ -23,7 +23,6 @@ function PlanStorage() {
     if(sem !== null) {
       sem.addCourse(course);
       $("#" + semester + " .total-units").text(sem.units);
-      setSaved(false);
     }
   }
 
@@ -32,7 +31,6 @@ function PlanStorage() {
     if(sem !== null) {
       sem.removeCourse(courseName);
       $("#" + semester + " .total-units").text(sem.units);
-      setSaved(false);
     }
   }
 
@@ -52,6 +50,7 @@ function Semester(code) {
   this.addCourse = function(course) {
     this.courses.push(course);
     this.units += course.units;
+    setSaved(false);
   }
 
   this.getCourse = function(courseTitle) {
@@ -67,6 +66,7 @@ function Semester(code) {
         return rem;
       } 
     }
+    setSaved(false);
   }
 
   this.findCourse = function(courseTitle) {
@@ -82,6 +82,7 @@ function Semester(code) {
 function Course(title, units) {
   this.title = title;
   this.units = parseInt(units);
+  this.unitsText = units;
 }
 
 // PLAN STORAGE //
@@ -117,6 +118,36 @@ function storeLocalChanges() {
   planName = planTitle;
   localStorage[planName] = JSON.stringify(storage);
   setSaved(true);
+}
+
+function initFromStorage(planTitle) {
+  var jsonObj = JSON.parse(localStorage[planTitle]);
+  console.log(jsonObj);
+  storage = new PlanStorage();
+  
+  $("#planning-area").empty();
+  populateSemesters(SEMESTER, false);
+
+  for(var i = 0; i < jsonObj.semesters.length; ++i) {
+    var jSemester = jsonObj.semesters[i];
+    var semester = new Semester(jSemester.code);
+    for(var j = 0; j < jSemester.courses.length; ++j) {
+      var jCourse = jSemester.courses[j];
+      var course = new Course(jCourse.title, jCourse.unitsText);
+      semester.addCourse(course);
+      var tile = createCourseTile(course.title, course.unitsText, true);
+      $("#" + semester.code + " .course-tile-area").append(tile);
+      tile.children(".close").click(function() {
+        removeTile(tile)
+      });
+    }
+    storage.addSemester(semester);
+    $("#" + semester.code + " .total-units").text(semester.units);
+  }
+  $("#plan-title").text(planTitle);
+  planName = planTitle;
+  setSaved(true);
+  console.log(storage);
 }
 
 // COURSE LIST POPULATION //
@@ -188,7 +219,7 @@ function selectSemester(semesterCode) {
 
 // TILE CREATION //
 
-function createSemesterTile(year, semester) {
+function createSemesterTile(year, semester, create) {
   var tile = $("<div>").addClass("semester-plan").addClass("semester-" + semester).attr("id", year + "" + semester);
   tile.append($("<div>").addClass("semester-title").html(TERMS[semester - 1] + " " + year +
                                                          " &mdash; Total Units: <span class='total-units'>0</span>"));
@@ -199,7 +230,7 @@ function createSemesterTile(year, semester) {
     selectSemester(year + "" + semester);
   });
 
-  storage.addSemester(new Semester(year + "" + semester));
+  if(create) storage.addSemester(new Semester(year + "" + semester));
   return tile;
 }
 
@@ -225,9 +256,8 @@ $(document).ready(function() {
   $('#departments_chosen > .chosen-single > div > b').hide();
   setDeptList(SEMESTER);
   bindEvents();
-  populateSemesters(SEMESTER);
-
-  $("#plan-title").keypress(function(e){ return e.which != 13; });
+  populateSemesters(SEMESTER, true);
+  if(localStorage.length !== 0) populateSavedPlans();
 });
 
 function bindEvents() {
@@ -254,10 +284,7 @@ function bindEvents() {
   $("#add-course-btn").click(function() {
     var tile = $("#course-tile-preview .course-tile").clone();
     tile.children(".close").removeAttr("hidden").click(function() {
-      console.log(tile.parents(".semester-plan"));
-      var semesterId = $(tile.parents(".semester-plan")[0]).attr("id");
-      storage.removeCourse(semesterId, tile.children(".course-title").text());
-      tile.remove();
+      removeTile(tile);
     });
     selectedSemester.children(".course-tile-area").append(tile);
     storage.addCourse(selectedSemester.attr("id"),
@@ -268,20 +295,42 @@ function bindEvents() {
   $("#new-plan").click(function() {
     storage = new PlanStorage();
     $("#planning-area").empty();
-    populateSemesters(SEMESTER);
+    populateSemesters(SEMESTER, true);
     $("#plan-title").text("Your Title Here");
     setSaved(true);
   });
+
+  $("#plan-title").keypress(function(e){ return e.which != 13; });
 }
 
-function populateSemesters(startSemester) {
+function removeTile(tile) {
+  console.log("removing");
+  var semesterId = $(tile.parents(".semester-plan")[0]).attr("id");
+  storage.removeCourse(semesterId, tile.children(".course-title").text());
+  tile.remove();
+  console.log(storage);
+}
+
+function populateSemesters(startSemester, create) {
   var startYear = parseInt(startSemester.substring(0, startSemester.length - 1));
   var startSem = parseInt(startSemester.substring(startSemester.length - 1, startSemester.length));
   var planningArea = $("#planning-area");
   for(var i = 0; i < 8; ++i) {
-    planningArea.append(createSemesterTile(startYear, startSem));
+    planningArea.append(createSemesterTile(startYear, startSem, create));
     if(startSem == 3) startYear++;
     startSem = (startSem + 2) % 4;
   }
   selectSemester(startSemester);
+}
+
+function populateSavedPlans() {
+  var savedList = $("#saved-list");
+  savedList.empty();
+  for(var i = 0; i < localStorage.length; ++i) {
+    var key = localStorage.key(i);
+    savedList.append($("<li>").append($("<a>").attr("href", "#").addClass("saved-plan").text(key)));
+  }
+  $(".saved-plan").click(function() {
+    initFromStorage($(this).text());
+  });
 }

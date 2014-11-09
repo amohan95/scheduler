@@ -65,8 +65,8 @@
     <div id="planning-wrapper">
       <div id="planning-menu-bar">
         <div id="plan-title" contenteditable="true">Your Title Here</div>
-        <i id="new-plan" class="fa fa-plus fa-2x pull-left"></i>
-        <i id="save-plan" class="fa fa-save fa-2x pull-right saved"></i>
+        <i id="new-plan" class="fa fa-plus fa-2x pull-left" title="New Plan"></i>
+        <i id="save-plan" class="fa fa-save fa-2x pull-right saved" title="Save"></i>
       </div>
       <div id="planning-area"></div>
     </div>
