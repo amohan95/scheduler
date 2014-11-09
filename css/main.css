@@ -1,32 +1,131 @@
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-#main-wrapper {
-  height: 90vh;
-  display: block;
-}
+   #main-wrapper {
+    height: 90vh;
+    display: block;
+    border-bottom: 1px solid #000;
+  }
 
-#sidebar {
-  float: left;
-  height: 100%;
-  width: 30%;
-  border-right: 1px solid #000;
-  text-align: center;
-}
+  #sidebar {
+    float: left;
+    height: 100%;
+    width: 30%;
+    border-right: 1px solid #000;
+    text-align: center;
+  }
 
-#planning-wrapper {
-  display: inline-block;
-  border: 1px 1px 1px 1px solid #000;
-  width: 70%;
-  height: 100%;
-}
+  .course-tile {
+    position: relative;
+    width: 200px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 5px;
+    border: solid 1px #999999;
+    background: linear-gradient(top, white, #EEEEEE);
+    background: -webkit-linear-gradient(top, white, #EEEEEE);
+    background: -moz-linear-gradient(top, white, #EEEEEE);
+    background: -ms-linear-gradient(top, white, #EEEEEE);
+    background: -o-linear-gradient(top, white, #EEEEEE);
+    padding: 4px;
+  }
 
-.loading {
-  float: right;
-  width: 16px !important;
-  height: 16px !important;
-  background-repeat: none;
-  margin: 2px;
-  vertical-align: middle;
-  background-image: url(../img/ajax-loader.gif);
-}
+  .course-tile:hover {
+    -webkit-box-shadow: 0px 0px 4px 2px #D50E0E;
+    -moz-box-shadow: 0px 0px 4px 2px #D50E0E;
+    -o-box-shadow: 0px 0px 4px 2px #D50E0E;
+    -ms-box-shadow: 0px 0px 4px 2px #D50E0E;
+    box-shadow: 0px 0px 4px 2px #D50E0E;
+  }
+
+  .course-title {
+    text-align:center;
+    width: 100%;
+    font-size: 14px;
+    overflow: auto;
+  }
+
+  .close {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  .course-units-wrapper {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .course-units {
+    margin: 0 auto;
+  }
+
+  #planning-wrapper {
+    display: inline-block;
+    width: 70%;
+    height: 100%;
+  }
+
+  #planning-menu-bar {
+    height: 30px;
+    border-bottom: 1px solid #000;
+  }
+
+  #planning-area {
+    margin: 1% auto 0 1%;
+    height: 95%;
+    overflow: auto;
+  }
+
+  .semester-plan {
+    height: 400px;
+    position: relative;
+    margin: 5px 5px 5px 5px;
+    border-radius: 5px;
+  }
+
+  .semester-plan.selected {
+    -webkit-box-shadow: 0px 0px 4px 2px #D50E0E;
+    -moz-box-shadow: 0px 0px 4px 2px #D50E0E;
+    -o-box-shadow: 0px 0px 4px 2px #D50E0E;
+    -ms-box-shadow: 0px 0px 4px 2px #D50E0E;
+    box-shadow: 0px 0px 4px 2px #D50E0E;
+  }
+
+  .semester-title {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .semester-1 {
+    background: #ffece9; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ffece9 0%, #ff4427 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffece9), color-stop(100%,#ff4427)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ffece9 0%,#ff4427 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ffece9 0%,#ff4427 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ffece9 0%,#ff4427 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ffece9 0%,#ff4427 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffece9', endColorstr='#ff4427',GradientType=0 ); /* IE6-9 */
+  }
+
+  .semester-3 {
+    background: #fef6a8; /* Old browsers */
+    background: -moz-linear-gradient(top,  #fef6a8 0%, #f9eb7f 40%, #fde937 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fef6a8), color-stop(40%,#f9eb7f), color-stop(100%,#fde937)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #fef6a8 0%,#f9eb7f 40%,#fde937 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #fef6a8 0%,#f9eb7f 40%,#fde937 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #fef6a8 0%,#f9eb7f 40%,#fde937 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #fef6a8 0%,#f9eb7f 40%,#fde937 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fef6a8', endColorstr='#fde937',GradientType=0 ); /* IE6-9 */
+  }
+
+  .loading {
+    float: right;
+    width: 16px !important;
+    height: 16px !important;
+    background-repeat: none;
+    margin: 2px;
+    vertical-align: middle;
+    background-image: url(../img/ajax-loader.gif);
+  }

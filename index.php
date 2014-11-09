@@ -47,9 +47,12 @@
       <select id="departments" data-placeholder="Department" name="departments"></select>
       <h4>Courses</h4>
       <select id="courses" data-placeholder="Course" name="courses"></select>
+      <div id="course-tile-preview" style="margin: 25px 0 25px 0;"></div>
+      <div id="add-course-btn" class="btn btn-default">Add Course</div>
     </div>
     <div id="planning-wrapper">
       <div id="planning-menu-bar"></div>
+      <div id="planning-area"></div>
     </div>
   </div>
   <hr>
