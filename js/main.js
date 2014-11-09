@@ -63,10 +63,10 @@ function Semester(code) {
       if(this.courses[i].title === courseTitle) {
         var rem = this.courses.splice(i, 1)[0];
         this.units -= rem.units;
+        setSaved(false);
         return rem;
       } 
     }
-    setSaved(false);
   }
 
   this.findCourse = function(courseTitle) {
@@ -88,10 +88,12 @@ function Course(title, units) {
 // PLAN STORAGE //
 
 function setSaved(saved) {
+  console.log('saving');
   if(!isSaved && saved) {
     $("#save-plan").removeClass("not-saved").addClass("saved");
   }
   else if(isSaved && !saved) {
+    console.log("not saved");
     $("#save-plan").removeClass("saved").addClass("not-saved");
   }
   isSaved = saved;
@@ -137,17 +139,19 @@ function initFromStorage(planTitle) {
       semester.addCourse(course);
       var tile = createCourseTile(course.title, course.unitsText, true);
       $("#" + semester.code + " .course-tile-area").append(tile);
-      tile.children(".close").click(function() {
-        removeTile(tile)
-      });
     }
     storage.addSemester(semester);
     $("#" + semester.code + " .total-units").text(semester.units);
   }
+  $.each($(".course-tile"), function(key, value) {
+    var tile = $(value);
+    tile.children(".close").click(function() {
+      removeTile(tile);
+    })  
+  });
   $("#plan-title").text(planTitle);
   planName = planTitle;
   setSaved(true);
-  console.log(storage);
 }
 
 // COURSE LIST POPULATION //
@@ -304,11 +308,10 @@ function bindEvents() {
 }
 
 function removeTile(tile) {
-  console.log("removing");
   var semesterId = $(tile.parents(".semester-plan")[0]).attr("id");
+  console.log(semesterId);
   storage.removeCourse(semesterId, tile.children(".course-title").text());
   tile.remove();
-  console.log(storage);
 }
 
 function populateSemesters(startSemester, create) {
