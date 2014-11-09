@@ -61,6 +61,7 @@
       <select id="courses" data-placeholder="Course" name="courses"></select>
       <div id="course-tile-preview" style="margin: 25px 0 25px 0;"></div>
       <div id="add-course-btn" class="btn btn-default">Add Course</div>
+      <div style="margin-top: 10px;">Selected Semester: <span id="selected-semester"></span></div>
     </div>
     <div id="planning-wrapper">
       <div id="planning-menu-bar">

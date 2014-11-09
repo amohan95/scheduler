@@ -218,6 +218,9 @@ function selectSemester(semesterCode) {
     selectedSemester.removeClass("selected");
   }
   selectedSemester = $("#" + semesterCode);
+  var startYear = semesterCode.substring(0, semesterCode.length - 1);
+  var startSem = parseInt(semesterCode.substring(semesterCode.length - 1, semesterCode.length));
+  $("#selected-semester").text(TERMS[startSem - 1] + " " + startYear);
   selectedSemester.addClass("selected");
 }
 
@@ -295,7 +298,10 @@ function bindEvents() {
                       new Course(tile.children(".course-title").text(), tile.attr("data-units")));
   });
 
-  $("#save-plan").click(function() { storeLocalChanges(); });
+  $("#save-plan").click(function() {
+    storeLocalChanges();
+    populateSavedPlans();
+  });
   $("#new-plan").click(function() {
     storage = new PlanStorage();
     $("#planning-area").empty();
